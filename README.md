@@ -60,7 +60,7 @@ given that the multi-modal data streams collected in our dataset, including the 
 ### Steps:
 1. Prepare the h^2^tc data. 
    1. Download the h^2^tc data and process it. 
-   2. Follow the [manual calibration instruction]() to calibrate the camera's extrinsic parameter. 
+   2. Follow the [manual calibration instruction](https://github.com/JustLuoxi/pose_reconstruction_and_retargeting/tree/main/cam_calib) to calibrate the camera's extrinsic parameter. 
    3. Place the extrinsic parameters file `CamExtr.txt` in folder `${TAKE_ID}`, like: 
     ```text
     002870
@@ -80,9 +80,9 @@ given that the multi-modal data streams collected in our dataset, including the 
    torchgeometry==0.1.2 smplx==0.1.28
    ```
 3. Prepare SMPL+H model
-(<small>Note: In the [coarse human pose estimation](#coarse-human-pose-estimation) stage, the mmhuman3d estimates human body poses only. In this stage, we want to recover the body+hands poses, so we use the smplh model.</small>)
+(<small>Note: In the last [coarse human pose estimation](#coarse-human-pose-estimation) stage, the mmhuman3d estimates human body poses only. In this stage, we want to recover the body+hands poses, so we use the smplh model.</small>)
    1. Create an account on the [project page](https://mano.is.tue.mpg.de/)
-   2. Go to the `Downloads` page and download the `Extended SMPL+H model (used in AMASS)`. Place the downloaded `smplh.tar.xz` in this directory.
+   2. Go to the `Downloads` page and download the `Extended SMPL+H model (used in AMASS)`. 
    3. Unzip the `smplh.tar.xz` to the folder `body_models`.
 
 1. Prepare Pose Prior VPoser
@@ -104,6 +104,7 @@ given that the multi-modal data streams collected in our dataset, including the 
             └── vposer_v1_0
     ├── motion_modeling
     ├── pose_fitting
+    ├── utils
     ├── config.py
     ├── fit_h2tc_mm.cfg           # config file
     ├── h2tc_fit_dataset_mm.py
@@ -167,8 +168,11 @@ For the hand poses, we have already obtained the ground truth values  $\Theta_{h
 
 
 ## Human Motion Retargeting
+
+To animate the human model and retarget the motion to robots, we first transfer the human model motion to general format animation (.fbx). Then we retarget the animation to new rigged models. The operations below demand professional animation skills, including both rigging and skinning techniques. Please check the [rigging and skinning tutorial](https://create.roblox.com/docs/art/modeling/rigging) first to get the know-how. 
+
 ### Transform the *smplh* human motions to the general format animations (.fbx)
-To animate the human model and retarget the motion to robots, we first transfer the human model motion to general format animation (.fbx). 
+
 
 1. Prepare the environment  
    a. Install [Python FBX](https://download.autodesk.com/us/fbx/20112/fbx_sdk_help/index.html?url=WS1a9193826455f5ff453265c9125faa23bbb5fe8.htm,topicNumber=d0e8312).  
@@ -179,7 +183,7 @@ To animate the human model and retarget the motion to robots, we first transfer 
      pip install -r requirements.txt
      ```
 2. Prepare SMPLH fbx model 
-   Follow the [SMPL-X Blender Add-On Tutorial](https://www.youtube.com/watch?v=DY2k29Jef94) to export the smplh skinned mesh (For convenience, you can export and use the smplx skinned mesh. In this step, smplh and smplx meshes are equivalent as we aim to transfer human motion to .fbx formate animation). Save the female skinned mesh `smplx-female.fbx` and male skinned mesh `smplx-male.fbx` to the folder `./FBX_model`.
+   Follow the [SMPL-X Blender Add-On Tutorial](https://www.youtube.com/watch?v=DY2k29Jef94) to export the Tpose smplh skinned mesh as a rigged model (For convenience, you can export and use the smplx skinned mesh. In this step, smplh and smplx meshes are equivalent as we aim to transfer human motion to .fbx formate animation). Save the female skinned mesh `smplx-female.fbx` and male skinned mesh `smplx-male.fbx` to the folder `./FBX_model`.
 3. File structure:
     ```
     SMPL-to-FBX-main

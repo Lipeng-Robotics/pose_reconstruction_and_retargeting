@@ -35,7 +35,7 @@
                 "--tracking_config",
                 "demo/mmtracking_cfg/deepsort_faster-rcnn_fpn_4e_mot17-private-half.py",
                 "--input_path",
-                "L:/h2tc_dataset/002870/processed/rgbd0",
+                "D:/h2tc_dataset/002870/processed/rgbd0",
                 "--show_path",
                 "vis_results/002870.mp4",
                 "--smooth_type",
@@ -70,7 +70,7 @@
             "console": "integratedTerminal",
             "justMyCode": true,
             "args": [
-                "--input_motion_base", "D:/h2tc_dataset/throw/002870/processed/rgbd0/results_out/stage2_results.npz",
+                "--input_motion_base", "D:/h2tc_dataset/throw/002870/processed/rgbd0/opt_pose/results_out/stage2_results.npz",
                 "--fbx_source_path","./FBX_model/smplx-male.fbx",
                 "--output_base", "D:/h2tc_dataset/throw/002870/processed/rgbd0",
             ]
