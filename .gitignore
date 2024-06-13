@@ -11,8 +11,6 @@ smplh_to_fbx/FBX_model
 *.cfg
 
 # images and videos
-*.jpg
-*.png
 *.mp4
 *.avi
 

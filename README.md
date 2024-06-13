@@ -55,7 +55,7 @@ More detailed configs and explanations are [here](https://github.com/open-mmlab/
 
 ## Multi-modal based human pose optimization
 Considering the presence of visual occlusion, the results of estimated human poses obtained from [MMHuman3D](https://github.com/open-mmlab/mmhuman3d/tree/main) may be coarse, particularly in the arms and hands. However, 
-given that the multi-modal data streams collected in our dataset, including the OptiTrack, SMP gloves poses, RGB-D images and so on, users can utilize these information to optimize the estimated human poses.  Here is an example pipeline that demonstrates how OptiTrack streams and SMP glove poses can be used to enhance the estimated human poses.
+given that the multi-modal data streams collected in our dataset, including the OptiTrack, SMP gloves poses, RGB-D images and so on, users can utilize this information to optimize the estimated human poses.  Here is an example pipeline that demonstrates how OptiTrack streams and SMP glove poses can be used to enhance the estimated human poses.
 
 ### Steps:
 1. Prepare the h^2^tc data. 
@@ -144,6 +144,7 @@ The OptiTrack term, denoted as $\mathcal{C}_\text{trk}$, quantifies the similari
 ```math
 \mathcal{C}_\text{trk} =\lambda _\text{trk}\sum_{t=0}^{T}\sum_{i=0}^{3} \mathop{\min}_{\mathbf{v}_t^i}\left \| \mathbf{v}_t^i- \mathbf{d}_t^i \right \| ^2
 ```
+![smplh_keyvertices](assets/smplh_keyvertices.png)
 
 The wrist cost, denoted as $\mathcal{C}_\text{wst}$, serves two purposes: disambiguating the right/left wrist pose based on hands tracking information and aiding in recovering accurate whole-arm poses even in cases of severe occlusions. To calculate the wrist loss, we utilize the hand OptiTrack pose $\mathbf{O}_t^{\text{hand}} = \left \{ \mathbf{o}_t^h \right \}_{i=0}^1$, where index $h=0$ corresponds to the right wrist and $h=1$ corresponds to the left wrist, respectively.
 ```math
@@ -206,12 +207,12 @@ To animate the human model and retarget the motion to robots, we first transfer 
 
 We utilize Unity 3D (2022.3.17) to demonstrate the retargeting process. Please refer to the [tutorial video](https://www.youtube.com/watch?v=BEZHVYk6Fa4) for a step-by-step instruction. Here is a brief overview of the steps involved:
 
-1. Rig the mesh model: Start with a mesh model and bind the mesh vertices to bones. So that we can animate the mesh model by animating its bones. 
+1. Rigging the mesh model: Start with a mesh model and bind the mesh vertices to bones. So that we can animate the mesh model by animating its bones. 
 2. Specify corresponding skeleton joints: In Unity 3D, after setting the rigged models as `humanoid` in the `animation type`,  the software automatically solves the corresponding skeleton joints between the rigged models A and B.
 3. Animation: Follow the instructions provided in the tutorial video. Unity 3D employs the [Linear Blend Skinning (LBS)](http://graphics.cs.cmu.edu/courses/15-466-f17/notes/skinning.html) algorithm for animation.
 
 
-The video below demonstrates a collection of retargeting results.
+The video below demonstrates a collection of retargeting results. It shows our pose reconstruction results and retargeting results using jvrc, atlas, icub and pepper robots. You can find the rigged models of these 4 robots in folder `assets\robot_models` (T-pose, .fbx format).   
 
 
 <div  align='center' style="display: flex; justify-content: center;">

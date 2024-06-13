@@ -19,7 +19,7 @@
             "console": "integratedTerminal",
             "args": [
                 "--img_file","D:/h2tc_dataset/throw/002870/processed/rgbd0/left_0000.jpg",
-                "--save_folder","D:/h2tc_dataset/throw/002870/processed/rgbd0",
+                "--save_folder","D:/h2tc_dataset/throw/002870",
             ]
         },
         {
