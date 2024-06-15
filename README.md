@@ -65,7 +65,6 @@ given that the multi-modal data streams collected in our dataset, including the 
     ```text
     002870
     ├── processed
-    ├── raw
     └── CamExtr.txt
    ```
 
