@@ -1,4 +1,3 @@
-<!-- Author: Xi Luo -->
 <!-- Documentation for Human Pose Extraction, Optimization and Retargeting -->
 # Human Pose Extraction, Optimization and Retargeting
 
@@ -36,7 +35,7 @@ cd mmhuman3d
 ```python
 python demo/estimate_smpl.py \
 configs/hmr/resnet50_hmr_pw3d.py \
-data/checkpoints/resnet50_hmr_pw3d.pth \
+data/checkpoints/resnet50_hmr_pw3d.pth \  //lipeng1: what's this?
 --multi_person_demo \
 --tracking_config demo/mmtracking_cfg/deepsort_faster-rcnn_fpn_4e_mot17-private-half.py \
 --input_path ${DATASET_PATH}/${TAKE_ID}/processed/rgbd0 \
@@ -46,11 +45,11 @@ data/checkpoints/resnet50_hmr_pw3d.pth \
 --draw_bbox \
 --output ${RESULT_OUT_PATH}
 ```
-`--input_path` is the input image folder. Please specify the `${DATASET_PATH}/${TAKE_ID}`.
-`--show_path` will save the visualized results in .mp4 format. Please specify the `${RESULT_OUT_PATH}/${TAKE_ID}.mp4`. 
+`--input_path` is the input image folder. Please specify the `${DATASET_PATH}/${TAKE_ID}`.  
+`--show_path` will save the visualized results in .mp4 format. Please specify the `${RESULT_OUT_PATH}/${TAKE_ID}.mp4`.   
 `--output` is the output folder path. The estimated human body poses will be saved in `${RESULT_OUT_PATH}/inference_result.npz`. 
 
-More detailed configs and explanations are [here](https://github.com/open-mmlab/mmhuman3d/blob/main/docs/getting_started.md#offline-demo)
+More detailed configs and explanations can be found [here](https://github.com/open-mmlab/mmhuman3d/blob/main/docs/getting_started.md#offline-demo).
 
 
 ## Multi-modal based human pose optimization
