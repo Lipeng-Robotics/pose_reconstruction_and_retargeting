@@ -7,8 +7,6 @@ pose_reconstruction_frommm/checkpoints
 pose_reconstruction_frommm/body_models
 smplh_to_fbx/FBX_model
 
-# cfg files
-*.cfg
 
 # images and videos
 *.mp4
